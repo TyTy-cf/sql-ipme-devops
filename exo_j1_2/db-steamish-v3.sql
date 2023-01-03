@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE IF NOT EXISTS `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nickname` varchar(180) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(180) NOT NULL,
+  `email` varchar(180) NOT NULL,
+  `nickname` varchar(180) DEFAULT NULL,
   `wallet` double NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `country_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   UNIQUE KEY `UNIQ_7D3656A4E7927C74` (`email`),
   UNIQUE KEY `UNIQ_7D3656A4989D9B62` (`slug`),
   KEY `IDX_7D3656A4F92F3E70` (`country_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1502 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1502;
 
 --
 -- Déchargement des données de la table `account`
@@ -1565,7 +1565,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext NOT NULL,
   `up_votes` int(11) NOT NULL,
   `down_votes` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -1573,7 +1573,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id`),
   KEY `IDX_9474526C9B6B5FBA` (`account_id`),
   KEY `IDX_9474526CE48FD905` (`game_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2501 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2501;
 
 --
 -- Déchargement des données de la table `comment`
@@ -4102,14 +4102,14 @@ INSERT INTO `comment` (`id`, `account_id`, `game_id`, `content`, `up_votes`, `do
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE IF NOT EXISTS `country` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nationality` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url_flag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `code` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `nationality` varchar(128) NOT NULL,
+  `url_flag` varchar(255) DEFAULT NULL,
+  `code` varchar(2) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_5373C966989D9B62` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14;
 
 --
 -- Déchargement des données de la table `country`
@@ -4140,17 +4140,17 @@ DROP TABLE IF EXISTS `game`;
 CREATE TABLE IF NOT EXISTS `game` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `publisher_id` int(11) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `price` double NOT NULL,
   `published_at` datetime NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `thumbnail_cover` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `thumbnail_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext NOT NULL,
+  `thumbnail_cover` varchar(255) DEFAULT NULL,
+  `thumbnail_logo` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_232B318C989D9B62` (`slug`),
   KEY `IDX_232B318C40C86FCE` (`publisher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50;
 
 --
 -- Déchargement des données de la table `game`
@@ -4219,7 +4219,7 @@ CREATE TABLE IF NOT EXISTS `game_country` (
   PRIMARY KEY (`game_id`,`country_id`),
   KEY `IDX_C6B1B649E48FD905` (`game_id`),
   KEY `IDX_C6B1B649F92F3E70` (`country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Déchargement des données de la table `game_country`
@@ -4589,7 +4589,7 @@ CREATE TABLE IF NOT EXISTS `game_genre` (
   PRIMARY KEY (`game_id`,`genre_id`),
   KEY `IDX_B1634A77E48FD905` (`game_id`),
   KEY `IDX_B1634A774296D31F` (`genre_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Déchargement des données de la table `game_genre`
@@ -4691,11 +4691,11 @@ INSERT INTO `game_genre` (`game_id`, `genre_id`) VALUES
 DROP TABLE IF EXISTS `genre`;
 CREATE TABLE IF NOT EXISTS `genre` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_835033F8989D9B62` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13;
 
 --
 -- Déchargement des données de la table `genre`
@@ -4733,7 +4733,7 @@ CREATE TABLE IF NOT EXISTS `library` (
   PRIMARY KEY (`id`),
   KEY `IDX_A18098BCE48FD905` (`game_id`),
   KEY `IDX_A18098BC9B6B5FBA` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9001;
 
 --
 -- Déchargement des données de la table `library`
@@ -13764,14 +13764,14 @@ DROP TABLE IF EXISTS `publisher`;
 CREATE TABLE IF NOT EXISTS `publisher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) DEFAULT NULL,
-  `name` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `website` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(180) NOT NULL,
+  `website` varchar(180) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_9CE8D546989D9B62` (`slug`),
   KEY `IDX_9CE8D546F92F3E70` (`country_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20;
 
 --
 -- Déchargement des données de la table `publisher`
