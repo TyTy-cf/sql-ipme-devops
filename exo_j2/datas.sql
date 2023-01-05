@@ -35,7 +35,7 @@ VALUES (
 INSERT INTO campus
 VALUES (
 	NULL,
-	2,
+	2
 	'IPME Clermont-Ferrand'
 );
 
@@ -45,7 +45,7 @@ VALUES (
 INSERT INTO `class`
 VALUES (
 	NULL,
-	2,
+	1,
 	'POEC DevOps',
 	'POEC DevOps',
 	2022,
